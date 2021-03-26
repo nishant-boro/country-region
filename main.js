@@ -4,9 +4,14 @@ const currentTheme = localStorage.getItem("theme");
 if (currentTheme == "dark") {
   document.body.classList.add("dark-theme");
 }
-const lightModeText = "Switch to light mode";
-const darkModeText = "Switch to dark mode";
+const lightModeText = "Switch to Dark mode";
+const darkModeText = "Switch to Light mode";
 var setText = false;
+
+document.getElementById("theme-toggler").innerHTML = setText
+  ? darkModeText
+  : lightModeText;
+setText = !setText;
 
 btn.addEventListener("click", function () {
   document.body.classList.toggle("dark-theme");
