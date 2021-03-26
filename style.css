@@ -1,0 +1,90 @@
+@import url("https://fonts.google.com/specimen/Nunito+Sans");
+
+body {
+  --text-color: #222;
+  --bkg-color: #fafafa;
+  --header-bkg-color: #ffffff;
+  --shd-color: rgb(243, 239, 239);
+}
+
+body.dark-theme {
+  --text-color: #fdffff;
+  --bkg-color: #202d36;
+  --header-bkg-color: #2b3743;
+  --shd-color: #222425;
+}
+
+body {
+  font-family: "Nunito Sans", serif;
+  margin: 0;
+  padding: 0;
+  background: var(--bkg-color);
+}
+
+.header {
+  padding-left: 90px;
+  padding-right: 90px;
+  background-color: var(--header-bkg-color);
+  color: var(--text-color);
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0px 2px 2px var(--shd-color);
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.element {
+  padding: 20px;
+  flex-basis: 20%;
+}
+
+.button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input {
+  padding: 20px;
+  width: 20%;
+  border: none;
+  outline: none;
+  background-color: var(--header-bkg-color);
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+}
+
+#theme-toggler {
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+.card-element {
+  background-color: var(--header-bkg-color);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  margin: 40px;
+  cursor: pointer;
+}
+
+.image-element {
+  margin-top: 50px;
+  margin-right: 100px;
+}
+
+.detailElem {
+  max-width: 300px;
+}
