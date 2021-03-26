@@ -12,16 +12,15 @@
           Switch to Dark Mode
         </h3>
     </div>
-    <div id="main" style="margin-left: 90px; margin-right: 10px;">
+    <div id="main" style="padding-left: 90px; padding-right: 90px; overflow: hidden;">
       <div style="margin-top: 30px; display: flex; justify-content: space-between;">
         <input
           id="search"
           type="text"
           placeholder="Search for a country"
-          onchange="searchFilter()"
         />
   
-        <div class="element">
+        <div>
           <select onchange="filterRegion.call(this, event)">
             <option value="all">Filter by region</option>
             <option value="africa">Africa</option>

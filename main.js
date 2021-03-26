@@ -4,9 +4,16 @@ const currentTheme = localStorage.getItem("theme");
 if (currentTheme == "dark") {
   document.body.classList.add("dark-theme");
 }
+const lightModeText = "Switch to light mode";
+const darkModeText = "Switch to dark mode";
+var setText = false;
 
 btn.addEventListener("click", function () {
   document.body.classList.toggle("dark-theme");
+  document.getElementById("theme-toggler").innerHTML = setText
+    ? darkModeText
+    : lightModeText;
+  setText = !setText;
 
   let theme = "light";
   if (document.body.classList.contains("dark-theme")) {
@@ -25,7 +32,7 @@ function getAllCountries() {
         <div data-country='${JSON.stringify(
           country
         )}' class="card-element" onclick="loadCountryDetailsPage.call(this, event)">
-            <img style="height: 200px; width: 300px" src='${country.flag}'>
+            <img style="height: 200px; width: 350px" src='${country.flag}'>
             <div style="padding: 20px;">
               <h1>${country.name}</h1>
               <h3>Population: ${country.population}</h3>
@@ -52,14 +59,18 @@ function searchInput(e) {
 
       for (let country of data) {
         const innerHtml = `
-            <div class="element">
-                <img style="height: 200px; width: 300px" src='${country.flag}'>
+          <div data-country='${JSON.stringify(
+            country
+          )}' class="card-element" onclick="loadCountryDetailsPage.call(this, event)">
+              <img style="height: 200px; width: 350px" src='${country.flag}'>
+              <div style="padding: 20px;">
                 <h1>${country.name}</h1>
                 <h3>Population: ${country.population}</h3>
                 <h3>Region: ${country.region}</h3>
                 <h3>Capital: ${country.capital}</h3>
-            </div>
-            `;
+              </div>
+          </div>
+          `;
         document.getElementsByClassName("container")[0].innerHTML += innerHtml;
       }
     });
@@ -88,14 +99,17 @@ function filterRegion(e) {
 
       for (let country of data) {
         const innerHtml = `
-            <div class="element">
-                <img style="height: 200px; width: 300px" src='${country.flag}'>
-                <h1>${country.name}</h1>
-                <h3>Population: ${country.population}</h3>
-                <h3>Region: ${country.region}</h3>
-                <h3>Capital: ${country.capital}</h3>
+        <div data-country='${JSON.stringify(
+          country
+        )}' class="card-element" onclick="loadCountryDetailsPage.call(this, event)">
+            <img style="height: 200px; width: 350px" src='${country.flag}'>
+            <div style="padding: 20px;">
+              <h1>${country.name}</h1>
+              <h3>Population: ${country.population}</h3>
+              <h3>Region: ${country.region}</h3>
+              <h3>Capital: ${country.capital}</h3>
             </div>
-            `;
+        </div>`;
         document.getElementsByClassName("container")[0].innerHTML += innerHtml;
       }
     });
@@ -106,19 +120,28 @@ function loadCountryDetailsPage(e) {
   document.getElementById("detail").style.visibility = "visible";
   const country = JSON.parse(this.getAttribute("data-country"));
 
-  function formatCurrencies(data) {
-    return "EUR";
+  function formatData(data) {
+    var res = "";
+
+    for (let curr of data) {
+      res += curr.name + ", ";
+    }
+
+    res = res.substring(0, res.length - 2);
+    return res;
   }
 
   const innerHtml = `
             <button onclick="window.location.reload()" class="button" type="button">Back</button>
-            <div class="container">
+            <div class="containerDetail">
               <div class="image-element">
-                  <img style="height: 500px; width: 800px" src='${country.flag}'>
+                  <img style="height: 500px; width: 800px" src='${
+                    country.flag
+                  }'>
               </div>
-              <div>
+              <div style="margin-top: 50px;">
                   <h1>${country.name}</h1>
-                  <div class="container">
+                  <div class="containerDetail">
                     <div class="detailElem">
                       <h3>Native name: ${country.nativeName}</h3>
                       <h3>Population: ${country.population}</h3>
@@ -128,8 +151,8 @@ function loadCountryDetailsPage(e) {
                     </div>
                     <div class="detailElem" style="margin-left: 100px">
                       <h3>Top Level Domain: ${country.topLevelDomain[0]}</h3>
-                      <h3>Currencies: formatCurrencies(${country.currencies})</h3>
-                      <h3>Languages: "German"</h3>
+                      <h3>Currencies: ${formatData(country.currencies)}</h3>
+                      <h3>Languages: ${formatData(country.languages)}</h3>
                     </div>
                   </div>
               </div>
